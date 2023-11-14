@@ -38,10 +38,19 @@ public class SwaggerConfig {
 
 
   @Bean
-  public GroupedOpenApi sampleApi() {
+  public GroupedOpenApi backOfficeApi() {
     return GroupedOpenApi.builder()
-      .group("Test sample")
-      .pathsToMatch("/test/**", "/test/**")
+      .group("back-office")
+      .pathsToMatch("/kidari/back-office/**")
       .build();
   }
+
+  @Bean
+  public GroupedOpenApi frontApi() {
+    return GroupedOpenApi.builder()
+      .group("front")
+      .pathsToExclude("/kidari/back-office/**")
+      .build();
+  }
+
 }
