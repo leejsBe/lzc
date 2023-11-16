@@ -17,7 +17,7 @@ public class SwaggerConfig {
     Contact contact = new Contact();
 
     Info info = new Info()
-      .title("ㅋㄷㄹㅅㅌㄷㅇ")
+      .title("ㅋㄷㄹ ㅅㅌㄷㅇ")
       .version("1.0")
       .contact(contact)
       .description("")
