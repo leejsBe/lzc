@@ -1,6 +1,7 @@
 package kr.co.lzc.global.exception;
 
 import kr.co.lzc.global.dto.ApiErrorRes;
+import kr.co.lzc.global.dto.ApiRes;
 import kr.co.lzc.global.enumeration.ErrorCode;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.Ordered;
@@ -20,6 +21,9 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @Order(Ordered.HIGHEST_PRECEDENCE)
 public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 
+  protected ResponseEntity<Object> buildResponseEntity(ApiRes<Void> resultDto) {
+    return ResponseEntity.ok(resultDto);
+  }
 
   @Override
   protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
