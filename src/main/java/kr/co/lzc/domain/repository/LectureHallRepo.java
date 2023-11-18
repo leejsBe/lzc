@@ -2,15 +2,13 @@ package kr.co.lzc.domain.repository;
 
 
 import kr.co.lzc.domain.entity.Lecture;
+import kr.co.lzc.domain.entity.LectureHall;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
-public interface LectureRepo extends CrudRepository<Lecture, Long> {
+public interface LectureHallRepo extends CrudRepository<LectureHall, Long> {
 
-
-  @Query("SELECT l FROM Lecture l JOIN FETCH l.lectureHall")
-  List<Lecture> findAll();
 
 }

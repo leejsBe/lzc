@@ -32,7 +32,7 @@ public class Lecture {
   private int maxApplicant;
 
   @Column(name = "time")
-  private LocalDateTime localDateTime;
+  private LocalDateTime time;
 
   @Column(name = "contents")
   private String contents;
@@ -40,6 +40,7 @@ public class Lecture {
 
 
   @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "lecture_hall_id")
   private LectureHall lectureHall;
 
   @CreationTimestamp
