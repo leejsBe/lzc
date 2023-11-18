@@ -23,12 +23,12 @@ public class RegistrationLectureForBackOfficeService {
 
 
   @Transactional
-  public void save(RegistrationLectureForBackOfficeReq registrationLectureForBackOfficeReq) {
+  public Lecture save(RegistrationLectureForBackOfficeReq registrationLectureForBackOfficeReq) {
     LectureHall lectureHall = lectureHallRepo.findById(registrationLectureForBackOfficeReq.getLectureHallId())
       .orElseThrow(() -> new BackOfficeException(BackOfficeResCode.NOT_FOUND_LECTURE_HALL));
 
 
-    lectureRepo.save(Lecture.builder()
+    return lectureRepo.save(Lecture.builder()
       .lectureHall(lectureHall)
       .lecturer(registrationLectureForBackOfficeReq.getLecturerName())
       .maxApplicant(registrationLectureForBackOfficeReq.getMaxApplicant())
