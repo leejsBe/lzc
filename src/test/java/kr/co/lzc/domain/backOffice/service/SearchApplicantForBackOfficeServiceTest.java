@@ -25,7 +25,9 @@ class SearchApplicantForBackOfficeServiceTest {
 
     assertNotNull(result);
 
-    result.forEach(SearchApplicantForBackOfficeRes::toString);
+    for (SearchApplicantForBackOfficeRes searchApplicantForBackOfficeRes : result) {
+      System.out.println(searchApplicantForBackOfficeRes.toString());
+    }
   }
 
 }
