@@ -3,12 +3,14 @@ package kr.co.lzc.domain.backOffice.dto.searchApplicant;
 import kr.co.lzc.domain.entity.Employee;
 import kr.co.lzc.domain.entity.Registration;
 import lombok.Getter;
+import lombok.ToString;
 
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
 
 @Getter
+@ToString
 public class SearchApplicantForBackOfficeRes {
 
 
@@ -26,6 +28,7 @@ public class SearchApplicantForBackOfficeRes {
   }
 
   @Getter
+  @ToString
   public static class Applicant {
 
     private final String no;
