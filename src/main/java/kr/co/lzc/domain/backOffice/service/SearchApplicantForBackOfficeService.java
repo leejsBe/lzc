@@ -32,6 +32,9 @@ public class SearchApplicantForBackOfficeService {
   }
 
 
+  /**
+   * 사원 정보 조회
+   */
   private Map<Long, Employee> getEmployeeInfo(List<Registration> registrations) {
     return employeeRepo.findAllById(registrations.stream()
       .map(r -> r.getEmployee().getId()).toList()).stream().collect(Collectors.toMap(Employee::getId, Function.identity()));
