@@ -11,9 +11,6 @@ insert into lecture_hall(`name`, create_at) values ('나나나 강연장', now()
 
 insert into lecture(`lecture_hall_id`,`name`,lecturer, max_applicant, `time`, contents,  create_at) values((SELECT lh.id FROM lecture_hall lh limit 1), '기본 테스트1 강연', '테스트 강연자1', 50, now(), '테스트1 강연 입니다!!', now());
 insert into lecture(`lecture_hall_id`,`name`,lecturer, max_applicant, `time`, contents,  create_at) values((SELECT lh.id FROM lecture_hall lh limit 1), '기본 테스트2 강연', '테스트 강연자2', 30, now(), '테스트2 강연 입니다!!', now());
-
-insert into lecture(`lecture_hall_id`,`name`,lecturer, max_applicant, `time`, contents,  create_at) values((SELECT lh.id FROM lecture_hall lh limit 1,1), '노출 안되는 강연', '테스트 강연자', 5, TIMESTAMPADD(day, 8, now()), '노출 안되는 강연', now());
-
 insert into lecture(`lecture_hall_id`,`name`,lecturer, max_applicant, `time`, contents,  create_at) values((SELECT lh.id FROM lecture_hall lh limit 1,1), '기본 테스트3 강연', '테스트 강연자3', 80, now(), '테스트3 강연 입니다!!', now());
 
 
