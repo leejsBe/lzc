@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -19,7 +18,8 @@ public class SearchLectureForBackOfficeService {
 
   @Transactional
   public List<SearchLectureForBackOfficeRes> search() {
-    return lectureRepo.findAll().stream().map(SearchLectureForBackOfficeRes::new).toList();
+    return lectureRepo.findAll()
+      .stream().map(SearchLectureForBackOfficeRes::new).toList();
   }
 
 

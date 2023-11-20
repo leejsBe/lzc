@@ -6,6 +6,8 @@ import kr.co.lzc.domain.repository.LectureRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Service
@@ -17,12 +19,14 @@ public class SearchLectureService {
 
   /**
    * 강연 목록 조회
+   * 신청 가능한 시점부터 강연시작시간 1일 후 까지 노출
    */
   public List<SearchLectureRes> search() {
-    List<Lecture> lectures = lectureRepo.findAll();
-    
+    List<Lecture> lectures = lectureRepo.findAllByTime(
+      LocalDateTime.now().plusDays(7).format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),
+      LocalDateTime.now().minusDays(1).format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
 
-    return null;
+    return lectures.stream().map(SearchLectureRes::new).toList();
   }
 
 }

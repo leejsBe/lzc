@@ -68,10 +68,10 @@ class SearchLectureServiceTest {
     // THEN
     Assertions.assertDoesNotThrow(() -> {
       List<SearchLectureRes> result = searchLectureService.search();
-      result.forEach(System.out::println);
+      result = result.stream().filter(lecture -> StringUtils.equals(then, lecture.getLectureName())).toList();
 
-      result.stream().filter(lecture -> StringUtils.equals(then, lecture.getName()));
       if (result.size() != 0) {
+        result.forEach(System.out::println);
         throw new Exception();
       }
     });
@@ -80,7 +80,7 @@ class SearchLectureServiceTest {
 
   private static Stream<Arguments> validParams() {
     return Stream.of(
-      Arguments.of("목록 검색", "8일 후 강연은 노출 X")
+      Arguments.of("목록 검색", "8일 후 강연")
     );
   }
 
