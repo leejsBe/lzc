@@ -26,7 +26,7 @@ public class SearchLectureForBackOfficeRes {
     this.lectureTime = lecture.getTime();
     this.contents = lecture.getContents();
     this.hallName = lecture.getLectureHall().getName();
-    this.deleted = Objects.isNull(lecture.getDelAt());
+    this.deleted = !Objects.isNull(lecture.getDelAt());
   }
 
 }

@@ -8,7 +8,7 @@ import java.time.format.DateTimeFormatter;
 @Getter
 public class SearchLectureRes {
 
-
+  private final long id;
   private final String lectureName;
   private final String lecturer;
   private final int maxApplicant;
@@ -19,6 +19,7 @@ public class SearchLectureRes {
 
 
   public SearchLectureRes(Lecture lecture) {
+    this.id = lecture.getId();
     this.lectureName = lecture.getName();
     this.lecturer = lecture.getLecturer();
     this.maxApplicant = lecture.getMaxApplicant();

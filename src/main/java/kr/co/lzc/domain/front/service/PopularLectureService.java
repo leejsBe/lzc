@@ -7,7 +7,6 @@ import kr.co.lzc.domain.repository.LectureRepo;
 import kr.co.lzc.domain.repository.RegistrationRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -28,11 +27,10 @@ public class PopularLectureService {
   /**
    * 3일간 인기가 가장 많은 순서로 강연 리스트 조회
    */
-  @Transactional
   public List<PopularLectureRes> search() {
     List<Registration> registrations = registrationRepo.findByAfterPointTime(LocalDateTime.now().minusDays(3).format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
     Map<Long, Long> lectureListMap = registrations.stream().collect(Collectors.groupingBy(registration -> registration.getLecture().getId(), Collectors.counting()));
-    
+
     Map<Long, Lecture> lectureMap = lectureRepo.findAllByIds(lectureListMap.keySet().stream().toList()).stream().collect(Collectors.toMap(Lecture::getId, Function.identity()));
 
     /// 신청 많은 순서로 정렬

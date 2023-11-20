@@ -10,6 +10,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Objects;
+
 @Service
 @RequiredArgsConstructor
 public class CancelApplyService {
@@ -20,6 +22,9 @@ public class CancelApplyService {
   @Transactional
   public CancelApplyRes cancel(CancelApplyReq cancelApplyReq) {
     Registration registration = registrationRepo.findById(cancelApplyReq.getBookNo()).orElseThrow(() -> new FrontException(FrontResCode.NOT_FOUND_REGISTRATION));
+    if (!Objects.isNull(registration.getDelAt())) {
+      throw new FrontException(FrontResCode.ALREADY_DEL);
+    }
 
     registration.changeForCancel();
 
