@@ -1,12 +1,15 @@
 package kr.co.lzc.domain.front.dto.applyLecture;
 
-import lombok.Builder;
+import kr.co.lzc.domain.entity.Registration;
 import lombok.Getter;
 
 @Getter
-@Builder
 public class ApplyLectureRes {
 
-  private String bookNo;
+  private final long bookNo;
 
+
+  public ApplyLectureRes(Registration registration) {
+    this.bookNo = registration.getId();
+  }
 }

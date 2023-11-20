@@ -12,7 +12,10 @@ import java.time.LocalDateTime;
 
 @Getter
 @Entity
-@Table(name = "registration")
+@Table(name = "registration",
+  uniqueConstraints = {
+    @UniqueConstraint(name = "constraintName", columnNames = {"lecture_id", "employee_id", "duplicate_check"})
+  })
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -30,6 +33,9 @@ public class Registration {
   @ManyToOne(fetch = FetchType.LAZY)
   private Employee employee;
 
+
+  @Column(name = "duplicate_check")
+  private String duplicateCheck;
 
   @CreationTimestamp
   @Column(updatable = false)
