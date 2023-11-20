@@ -11,6 +11,10 @@ import java.util.List;
 public interface EmployeeRepo extends CrudRepository<Employee, Long> {
 
 
+  @Query("SELECT e FROM Employee e WHERE e.delAt IS NULL")
+  List<Employee> findAll();
+
+
   @Query("SELECT e FROM Employee e WHERE e.id IN(:ids)")
   List<Employee> findAllById(@Param("ids") List<Long> ids);
 
