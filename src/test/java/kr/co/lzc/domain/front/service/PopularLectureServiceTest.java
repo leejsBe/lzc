@@ -18,7 +18,7 @@ class PopularLectureServiceTest {
 
 
   @Test
-  @DisplayName("실시간 인기 강연 조회")
+  @DisplayName("실시간 인기 강연 조회 테스트")
   void success() {
 
     Assertions.assertDoesNotThrow(() -> {
@@ -28,7 +28,7 @@ class PopularLectureServiceTest {
         throw new Exception();
       }
 
-      int applyCount = Integer.MAX_VALUE;
+      long applyCount = Integer.MAX_VALUE;
 
       for (PopularLectureRes popularLectureRes : result) {
         if (applyCount < popularLectureRes.getReservedCount()) {

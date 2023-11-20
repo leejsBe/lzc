@@ -20,4 +20,8 @@ public interface RegistrationRepo extends CrudRepository<Registration, Long> {
 
   @Query("SELECT COUNT(r) FROM Registration r WHERE r.delAt IS NULL AND r.lecture.id = :lectureId")
   int countByLectureIdAndDelAtIsNull(@Param("lectureId") long lectureId);
+
+
+  @Query(nativeQuery = true, value = "SELECT r.* FROM registration r WHERE r.del_at IS NULL AND :afterPointTime < r.create_at")
+  List<Registration> findByAfterPointTime(@Param("afterPointTime") String afterPointTime);
 }
