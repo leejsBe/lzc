@@ -10,6 +10,7 @@ import java.time.format.DateTimeFormatter;
 @Getter
 public class HistoryApplyRes {
 
+  private final long bookNo;
 
   private final String lectureName;
   private final String lecturer;
@@ -22,6 +23,8 @@ public class HistoryApplyRes {
   private final String employeeName;
 
   public HistoryApplyRes(Registration registration, Employee employee) {
+    this.bookNo = registration.getId();
+
     this.lectureName = registration.getLecture().getName();
     this.lecturer = registration.getLecture().getLecturer();
     this.lectureTime = registration.getLecture().getTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
