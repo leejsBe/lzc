@@ -10,7 +10,8 @@ public enum FrontResCode implements ResCode {
 
   NOT_FOUND_LECTURE("F001", "Not found lecture."),
   NOT_FOUND_EMPLOYEE("F002", "Not found employee."),
-  NOT_FOUND_REGISTRATION("F003", "Not found registration.")
+  NOT_FOUND_REGISTRATION("F003", "Not found registration."),
+  MAX_APPLICANT_ERR("F004", "The maximum number of attendees for the lecture has been exceeded.")
   ;
 
   private final String code;

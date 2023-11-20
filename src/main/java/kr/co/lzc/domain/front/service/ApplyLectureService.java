@@ -28,6 +28,8 @@ public class ApplyLectureService {
   @Transactional
   public ApplyLectureRes apply(ApplyLectureReq applyLectureReq) {
     Lecture lecture = lectureRepo.findById(applyLectureReq.getLectureId()).orElseThrow(() -> new FrontException(FrontResCode.NOT_FOUND_LECTURE));
+    maxApplicantCheck(lecture);
+
     Employee employee = employeeRepo.findByNo(applyLectureReq.getEmployeeNo()).orElseThrow(() -> new FrontException(FrontResCode.NOT_FOUND_EMPLOYEE));
 
     Registration registration = registrationRepo.save(Registration.builder()
@@ -38,6 +40,14 @@ public class ApplyLectureService {
       .build());
 
     return new ApplyLectureRes(registration);
+  }
+
+
+  private void maxApplicantCheck(Lecture lecture) {
+    int count = registrationRepo.countByLectureIdAndDelAtIsNull(lecture.getId());
+    if (count >= lecture.getMaxApplicant()) {
+      throw new FrontException(FrontResCode.MAX_APPLICANT_ERR);
+    }
   }
 
 }
