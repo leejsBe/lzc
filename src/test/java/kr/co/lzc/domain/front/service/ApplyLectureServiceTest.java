@@ -32,7 +32,7 @@ class ApplyLectureServiceTest {
   @Test
   @DisplayName("강연 신청 테스트")
   void success() {
-    Lecture lecture = lectureRepo.findAll().stream().findFirst().get();
+    Lecture lecture = lectureRepo.findById(3L).get();
     Employee employee = employeeRepo.findAll().stream().findFirst().get();
 
 

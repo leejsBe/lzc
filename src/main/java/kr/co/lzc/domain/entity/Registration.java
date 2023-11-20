@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
@@ -19,6 +21,8 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@DynamicUpdate
+@DynamicInsert
 public class Registration {
 
 
@@ -46,4 +50,10 @@ public class Registration {
 
   private LocalDateTime delAt;
 
+
+  public void changeForCancel() {
+    this.duplicateCheck = this.duplicateCheck + "_" + this.id;
+    this.modAt = LocalDateTime.now();
+    this.delAt = LocalDateTime.now();
+  }
 }

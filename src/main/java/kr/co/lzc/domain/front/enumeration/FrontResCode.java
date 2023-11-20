@@ -9,7 +9,9 @@ import lombok.RequiredArgsConstructor;
 public enum FrontResCode implements ResCode {
 
   NOT_FOUND_LECTURE("F001", "Not found lecture."),
-  NOT_FOUND_EMPLOYEE("F002", "Not found employee.");
+  NOT_FOUND_EMPLOYEE("F002", "Not found employee."),
+  NOT_FOUND_REGISTRATION("F003", "Not found registration.")
+  ;
 
   private final String code;
   private final String msg;

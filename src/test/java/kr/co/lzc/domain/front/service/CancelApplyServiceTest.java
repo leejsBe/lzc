@@ -9,10 +9,7 @@ import kr.co.lzc.domain.front.dto.historyApply.HistoryApplyReq;
 import kr.co.lzc.domain.front.dto.historyApply.HistoryApplyRes;
 import kr.co.lzc.domain.repository.EmployeeRepo;
 import kr.co.lzc.domain.repository.LectureRepo;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
@@ -39,15 +36,16 @@ class CancelApplyServiceTest {
   public CancelApplyService cancelApplyService;
 
 
-  @BeforeEach
-  void ready() {
-    Lecture lecture = lectureRepo.findAll().stream().findFirst().get();
+  @AfterEach
+  void check() {
     Employee employee = employeeRepo.findAll().stream().findFirst().get();
 
-    applyLectureService.apply(ApplyLectureReq.builder()
-      .lectureId(lecture.getId())
-      .employeeNo(employee.getNo())
-      .build());
+    Assertions.assertDoesNotThrow(() -> {
+      List<HistoryApplyRes> historyApplyRes = historyApplyService.search(HistoryApplyReq.builder().employeeNo(employee.getNo()).build());
+      if (historyApplyRes.size() != 0) {
+        throw new Exception();
+      }
+    });
   }
 
 

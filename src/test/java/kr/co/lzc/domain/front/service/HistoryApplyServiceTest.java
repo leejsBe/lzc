@@ -32,18 +32,6 @@ class HistoryApplyServiceTest {
   public HistoryApplyService historyApplyService;
 
 
-  @BeforeEach
-  void ready() {
-    Lecture lecture = lectureRepo.findAll().stream().findFirst().get();
-    Employee employee = employeeRepo.findAll().stream().findFirst().get();
-
-
-    applyLectureService.apply(ApplyLectureReq.builder()
-      .lectureId(lecture.getId())
-      .employeeNo(employee.getNo())
-      .build());
-  }
-
 
   @Test
   @DisplayName("신청 내역 조회 테스트")
