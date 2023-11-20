@@ -11,6 +11,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.transaction.annotation.Transactional;
 
 @SpringBootTest
@@ -45,4 +46,28 @@ class ApplyLectureServiceTest {
     });
   }
 
+
+  @Test
+  @DisplayName("강연 중복 신청 테스트")
+  void fail() {
+    Lecture lecture = lectureRepo.findAll().stream().findFirst().get();
+    Employee employee = employeeRepo.findAll().stream().findFirst().get();
+
+
+    Assertions.assertThrows(DataIntegrityViolationException.class, () -> {
+      ApplyLectureRes result = applyLectureService.apply(ApplyLectureReq.builder()
+        .lectureId(lecture.getId())
+        .employeeNo(employee.getNo())
+        .build());
+
+
+      ApplyLectureRes result2 = applyLectureService.apply(ApplyLectureReq.builder()
+        .lectureId(lecture.getId())
+        .employeeNo(employee.getNo())
+        .build());
+
+      Assertions.assertNotNull(result);
+      Assertions.assertNotNull(result2);
+    });
+  }
 }
