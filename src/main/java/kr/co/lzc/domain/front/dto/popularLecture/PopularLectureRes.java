@@ -6,4 +6,15 @@ import lombok.Getter;
 public class PopularLectureRes {
 
 
+  private String lectureName;
+  private String lecturer;
+  private String lectureHallName;
+  private String lectureTime;
+
+  private int reservedCount;
+
+  public PopularLectureRes() {
+
+  }
+
 }
